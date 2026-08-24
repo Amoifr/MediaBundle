@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+- feature - `Media`, `MediaVariation`, `OriginalStorage` and `CacheStorage` now expose a `getTemporaryUrl()` method, generating pre-signed URLs on the Flysystem adapters that support them, with a per-call expiration (one hour by default) - see the [URL generation documentation](doc/misc-features/url-generation.rst)
+- feature - Add `CacheStorage::getFilesystem()`, for parity with `OriginalStorage::getFilesystem()`
+- bc break - The bundle no longer forces a `public` visibility when writing media and variation files: the visibility configured on the Flysystem storage now applies. Declare `visibility: public` on your Flysystem storage if you relied on the forced visibility
 - feature - The `must_store_when_generating_url` setting can now be defined per variation, overriding the library-level `cache` setting - see the [variations documentation](doc/variations/variations.rst)
 - improvement - The "generate the variation file when its URL is generated" behavior moved from the Twig layer into `MediaVariation::getUrl()` itself: every URL generation (Twig components and filters, admin bridges, or custom code such as an API Platform normalizer) now honors the `must_store_when_generating_url` setting - see the [URL generation documentation](doc/misc-features/url-generation.rst)
 - bc break - The `JoliMediaExtension`, `Img` and `Source` constructors no longer take a `Converter` argument
