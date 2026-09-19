@@ -2,6 +2,7 @@
 
 ## [Unreleased]
 
+- feature - The `srcset` generation moved out of the Twig components into a `SrcsetBuilder` service, so that it can be used from anywhere - an API Platform normalizer, a JSON endpoint, or your own templating - along with a `joli_media_srcset` Twig filter and the `Srcset` / `SrcsetCandidate` models - see the [srcset generation documentation](doc/misc-features/srcset.rst)
 - bc break - `PreProcessorInterface` has a new `preservesPixelDimensions()` method, telling whether the pre-processor may change the pixel dimensions of the binary it is given. Pre-processors extending `AbstractPreProcessor` inherit a conservative `false` - see the [pre-processors documentation](doc/variations/pre-processors.rst)
 - fix - The pixel dimensions, mime type, format and file size guessed for a missing file are no longer cached for a whole day, and the timestamp they are keyed on is floored to the current hour, so that a missing file does not fill the cache pool with unreachable entries
 - feature - The `must_store_when_generating_url` setting can now be defined per variation, overriding the library-level `cache` setting - see the [variations documentation](doc/variations/variations.rst)
