@@ -41,6 +41,7 @@ use JoliCode\MediaBundle\Storage\MediaVariationPropertyAccessor;
 use JoliCode\MediaBundle\Storage\OriginalStorage;
 use JoliCode\MediaBundle\Storage\Strategy\FolderStorageStrategy;
 use JoliCode\MediaBundle\Storage\Strategy\IdentityStorageStrategy;
+use JoliCode\MediaBundle\Transformation\DimensionPredictor;
 use JoliCode\MediaBundle\Transformation\TransformationProcessor;
 use JoliCode\MediaBundle\Transformer\Crop;
 use JoliCode\MediaBundle\Transformer\Expand;
@@ -387,6 +388,13 @@ return static function (ContainerConfigurator $container): void {
         ])
 
         // transformation
+        ->set('joli_media.dimension_predictor', DimensionPredictor::class)
+        ->args([
+            '$logger' => service('logger')->ignoreOnInvalid(),
+        ])
+        ->public()
+        ->alias(DimensionPredictor::class, 'joli_media.dimension_predictor')
+
         ->set('joli_media.transformation_processor', TransformationProcessor::class)
         ->args([
             '$processorContainer' => service('joli_media.processor_container'),
