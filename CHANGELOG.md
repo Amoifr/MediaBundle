@@ -2,6 +2,7 @@
 
 ## [Unreleased]
 
+- fix - The pixel dimensions, mime type, format and file size guessed for a missing file are no longer cached for a whole day, and the timestamp they are keyed on is floored to the current hour, so that a missing file does not fill the cache pool with unreachable entries
 - feature - The `must_store_when_generating_url` setting can now be defined per variation, overriding the library-level `cache` setting - see the [variations documentation](doc/variations/variations.rst)
 - improvement - The "generate the variation file when its URL is generated" behavior moved from the Twig layer into `MediaVariation::getUrl()` itself: every URL generation (Twig components and filters, admin bridges, or custom code such as an API Platform normalizer) now honors the `must_store_when_generating_url` setting - see the [URL generation documentation](doc/misc-features/url-generation.rst)
 - bc break - The `JoliMediaExtension`, `Img` and `Source` constructors no longer take a `Converter` argument
